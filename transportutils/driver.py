@@ -32,8 +32,8 @@ class DriverDaysDates(object):
             byhour=0,
             byminute=0,
             bysecond=0,
-            dtstart=self.datedeb,
-            until=self.datefin)))>0 or self.startOfDay.hour> STARTNIGHT or self.startOfDay.hour> ENDNIGHT :
+            dtstart=self.startOfDay,
+            until=self.endOfDay)))>0 or self.startOfDay.hour> STARTNIGHT or self.startOfDay.hour> ENDNIGHT :
                 #there is midnight or start is in night so everything is nigth
                 self.nighttimedelta = abs(self.endOfDay -self.startOfDay)
                 self.daytimedelta = timedelta()

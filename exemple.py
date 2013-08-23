@@ -6,9 +6,9 @@ GMT = pytz.timezone('UTC')
 dd = driver.DriverDates(datetime.now(GMT) - timedelta(days=3), datetime.now(GMT))
 # iterate on every days
 for day in dd.days:
-	# print start and end of "day"
-	print day.startOfDay,"---", day.endOfDay
-	# night time
+    # print start and end of "day"
+    print day.startOfDay,"---", day.endOfDay
+    # night time
     print "night : ",day.nighttimedelta
     #day time
     print "day : ",day.daytimedelta
