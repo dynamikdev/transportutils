@@ -1,4 +1,6 @@
 """
+Tools for calculate hours/periods of a Truck's driver 
+Actually only valable in France
 
 """
 from datetime import datetime, timedelta
@@ -78,10 +80,3 @@ class DriverDates(object):
              [self.datefin]
         self.days = [ DriverDaysDates(lstdate[k-1],lstdate[k]) for k in range(1,len(lstdate))]    
 
-if __name__ == '__main__':
-    GMT = pytz.timezone('UTC')
-    dd = DriverDates(datetime.now(GMT) - timedelta(days=3), datetime.now(GMT))
-    for day in dd.days:
-        print day.startOfDay,"---", day.endOfDay
-        print "night : ",day.nighttimedelta
-        print "day : ",day.daytimedelta
