@@ -3,7 +3,7 @@ Tools for calculate hours/periods of a Truck's driver
 Actually only valable in France
 
 """
-from datetime import datetime, timedelta
+from datetime import timedelta
 from dateutil import rrule
 
 import pytz
@@ -47,9 +47,9 @@ class DriverDaysDates(object):
 
     def calcthedelta(self):
         lstdate = [self.startOfDay] + list(self.change) + [self.endOfDay]
-        print lstdate
-        for k in range(1,len(lstdate)):
-            print k,lstdate[k-1],lstdate[k]
+        # print lstdate
+        for k in range(1, len(lstdate)):
+            # print k,lstdate[k-1],lstdate[k]
             isNight = False
             if lstdate[k-1] in self.change: #start from a change
                 if lstdate[k-1].hour == STARTNIGHT:
@@ -66,11 +66,11 @@ class DriverDaysDates(object):
 class DriverDates(object):
     """
     """
-    DriverTimeZone=pytz.timezone('Europe/Paris')
-    def __init__(self,datedeb,datefin):
-        self.datedeb= datedeb.astimezone(self.DriverTimeZone)
-        self.datefin= datefin.astimezone(self.DriverTimeZone)
-        lstdate =[self.datedeb] +\
+    DriverTimeZone = pytz.timezone('Europe/Paris')
+    def __init__(self, datedeb, datefin):
+        self.datedeb = datedeb.astimezone(self.DriverTimeZone)
+        self.datefin = datefin.astimezone(self.DriverTimeZone)
+        lstdate = [self.datedeb] + \
          list(rrule.rrule(rrule.DAILY,
             byhour=0,
             byminute=0,
@@ -78,5 +78,5 @@ class DriverDates(object):
             dtstart=self.datedeb,
             until=self.datefin)) +\
              [self.datefin]
-        self.days = [ DriverDaysDates(lstdate[k-1],lstdate[k]) for k in range(1,len(lstdate))]    
+        self.days = [DriverDaysDates(lstdate[k-1], lstdate[k]) for k in range(1, len(lstdate))]    
 
